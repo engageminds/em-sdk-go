@@ -72,6 +72,9 @@ func (c *Client) TrackBatch(rs []*EventRequest) (*EventResponse, error) {
 		return nil, err
 	}
 	req, err := http.NewRequest(http.MethodPost, c.cfg.ServerUrl+"/s2s/es", buf)
+	if err != nil {
+		return nil, err
+	}
 	req.Header.Set("Content-Encoding", "deflate")
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("User-Agent", UA)
